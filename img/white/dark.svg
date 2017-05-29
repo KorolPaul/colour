@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="16px" viewBox="0 0 12 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/white/dark</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M7.8124737,8.25 C7.8124737,5.617 9.18176236,3.2925 11.2729354,1.8925 C11.5755435,1.6895 11.5401264,1.243 11.2000178,1.1055 C10.1760461,0.691 9.04530225,0.4725 7.85726595,0.5025 C3.67491982,0.608 0.193624492,3.884 0.0082054107,7.8965 C-0.197526435,12.3375 3.49210494,16 8.07289375,16 C9.18072068,16 10.2354219,15.784 11.1963719,15.396 C11.5375222,15.258 11.5750227,14.8105 11.2713729,14.6065 C9.18124152,13.2065 7.8124737,10.8825 7.8124737,8.25 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="12" height="16" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
+        <g id="icons/white/dark" stroke="#000000" stroke-width="2">
+            <use id="Page-1" mask="url(#mask-2)" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

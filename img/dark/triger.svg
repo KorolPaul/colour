@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="29px" height="14px" viewBox="0 0 29 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/dark/triger</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M29.2777778,10 L16.004565,10 C14.3451896,10 13,8.65348288 13,7 L13,7 L13,7 C13,5.34314575 14.3481502,4 16.0024602,4 L29.4741667,4" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="16.4741667" height="6" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <circle id="path-3" cx="7" cy="7" r="7"></circle>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="14" height="14" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons/dark/triger" stroke="#FFFFFF" stroke-width="2">
+            <use id="Rectangle-16-Copy" mask="url(#mask-2)" transform="translate(21.237083, 7.000000) scale(-1, 1) translate(-21.237083, -7.000000) " xlink:href="#path-1"></use>
+            <use id="Oval-5-Copy" mask="url(#mask-4)" transform="translate(7.000000, 7.000000) scale(-1, 1) translate(-7.000000, -7.000000) " xlink:href="#path-3"></use>
+        </g>
+    </g>
+</svg>

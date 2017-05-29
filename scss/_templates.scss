@@ -1,0 +1,92 @@
+@mixin inline-block {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+@mixin inline-block-wrapper {
+    font-size: 0;
+    line-height: 0;
+    letter-spacing: -0.31em;
+    word-spacing: -0.43em;
+}
+@mixin inline-block-optimized($font-size: $default_font-size, $line-height: normal) {
+    font-size: $font-size;
+    letter-spacing: normal;
+    line-height: $line-height;
+    word-spacing: normal;
+}
+@mixin transition ($args...) {
+    -webkit-transition: ($args);
+    transition: ($args);
+}
+@mixin opacity ($opacity) {
+    filter: alpha(opacity = $opacity * 100);
+    opacity: $opacity;
+}
+@mixin invisible-text {
+    font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+}
+@mixin transform ($args...) {
+    -webkit-transform: ($args);
+    transform: ($args);
+}
+@mixin animation($param) {
+    -webkit-animation: $param;
+    animation: $param;
+}
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+@mixin cutted-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+@mixin invisible-inline-block {
+    font: 0/0 a;
+    text-shadow: none;
+    color: transparent;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+@mixin tablet {
+    @media all and (max-width: 1024px) { @content; }
+}
+@mixin tablet-small {
+    @media all and (max-width: 500px) { @content; }
+}
+@mixin mobile {
+    @media all and (max-width: 479px) { @content; }
+}
+@mixin media($resolution) {
+    @media all and (max-width: $resolution) { @content; }
+}
+@mixin border-box {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+@mixin display-flex {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+@mixin filter($url) {
+    -webkit-filter: url($url);
+    filter: url($url);
+}
+@mixin invisible-text {
+    font-size: 0;
+    letter-spacing: 0;
+    color: transparent;
+}

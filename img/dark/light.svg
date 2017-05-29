@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/dark/light</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icons/dark/light" stroke="#FFFFFF">
+            <path d="M10,14.25325 C7.65125,14.25325 5.7475,12.3495 5.7475,9.9995 C5.7475,7.65075 7.65125,5.747 10,5.747 C12.34875,5.747 14.2525,7.65075 14.2525,9.9995 C14.2525,12.3495 12.34875,14.25325 10,14.25325 Z" id="Stroke-1"></path>
+            <path d="M10,-0.000250000001 L10,3.79475" id="Stroke-3"></path>
+            <path d="M10,16.205125 L10,20.000125" id="Stroke-6"></path>
+            <path d="M17.0715,2.92875 L14.38775,5.6125" id="Stroke-9"></path>
+            <path d="M5.61275,14.3875 L2.929,17.07125" id="Stroke-11"></path>
+            <path d="M20,9.99975 L16.205,9.99975" id="Stroke-13"></path>
+            <path d="M3.795125,9.99975 L0.000125,9.99975" id="Stroke-15"></path>
+            <path d="M17.0715,17.07125 L14.38775,14.3875" id="Stroke-17"></path>
+            <path d="M5.61275,5.6125 L2.929,2.92875" id="Stroke-19"></path>
+        </g>
+    </g>
+</svg>

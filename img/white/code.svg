@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="22px" height="18px" viewBox="0 0 22 18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>icons/white/code</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linejoin="round">
+        <g id="icons/white/code" stroke="#000000">
+            <g id="Group-39">
+                <polyline id="Stroke-2" transform="translate(3.172333, 8.527778) rotate(-90.000000) translate(-3.172333, -8.527778) " points="-1.35544464 10.7136037 3.17233314 6.34195189 7.70011092 10.7136037"></polyline>
+                <polyline id="Stroke-2-Copy-2" transform="translate(19.505666, 8.527778) scale(-1, 1) rotate(-90.000000) translate(-19.505666, -8.527778) " points="14.9778887 10.7136037 19.5056665 6.34195189 24.0334443 10.7136037"></polyline>
+                <path d="M13.6204395,0.369227941 L8.83611111,17.1540461" id="Line"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Colorus</title>
+        <link rel='stylesheet' href='style.css'>
+    </head>
+    <body>
+        <header>
+            <div class="menu">
+                <a href="#" class="menu_icon menu_icon__theme">theme</a>
+                <a href="#" class="menu_icon menu_icon__bookmark">bookmark</a>
+                <a href="#" class="menu_icon menu_icon__menu">menu</a>
+            </div>
+            <input type="text" id="search" class="search">
+        </header>
+        <main>
+            <div class="tabs">
+                <a href="#" class="tabs_link">Colors</a>
+                <a href="#" class="tabs_link">Gradients</a>
+                <div class="tabs_content" id="colors-holder"></div>
+                <div class="tabs_content" id="gradients-holder"></div>
+            </div>
+        </main>
+    </body>
+    <script>
+        require('./renderer.js')
+    </script>
+</html>
