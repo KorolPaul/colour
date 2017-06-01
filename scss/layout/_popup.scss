@@ -1,0 +1,49 @@
+.popup {
+    background: #f4f4f6;
+    border-radius: 5px;
+    padding: 18px;
+    min-height: 135px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    top: 75px;
+    right: 10px;
+    opacity: 0;
+    z-index: -1;
+    visibility: hidden;
+    transition: .2s ease-in-out opacity;
+
+    &__visible {
+        opacity: 1;
+        z-index: 1;
+        visibility: visible;
+    }
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: -24px;
+        right: 12px;
+        border-color: transparent transparent #f4f4f6 transparent;
+        border-style: solid;
+        border-width: 12px;
+    }
+
+    &_item {
+        color: $color;
+        display: block;
+        padding: 0 0 0 35px;
+        text-decoration: none;
+
+        &__add {
+            background: url(#{$img-path}/plus.svg) no-repeat 3px center;
+        }
+        &__settings {
+            background: url(#{$img-path}/code.svg) no-repeat 0 center;
+        }
+        &__open {
+            background: url(#{$img-path}/folder.svg) no-repeat 2px center;
+        }
+    }
+}

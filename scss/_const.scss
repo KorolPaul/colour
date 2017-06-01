@@ -1,35 +1,8 @@
+$img-path: 'img/white';
 
-
-/*Layout*/
-$layout_width: 1180px;
-
-$tablet-small: 750px;
 
 /*Fonts*/
-$default_font-family: Arial, Helvetica;
-$headings_font-family: 'Roboto Slab', serif;
-$default_font-size: 14px;
-$heading_color: #000;
-$default_color: #727272;
-
-
-$link_color: #0067d1;
-$link_color__hover: #67aff9;
-$link_color__green: #61e0a8;
-
-/*Inputs*/
-$input_color: #000;
-$input_border-color: #e7ebec;
-$input_background: #fff;
-
-$button_color: #fff;
-$button_background: $link_color;
-
-$error_color: #ef2924;
-
-/*Sidebar*/
-$sidebar_background: #fafafa;
-$sidebar_vertical-padding: 25px;
-$sidebar_horisontal-padding: 32px;
-$sidebar_padding: $sidebar_vertical-padding $sidebar_horisontal-padding;
- 
+$font-family: 'Alte Haas Grotesk';
+$headings_font-family: 'Alte Haas Grotesk Bold';
+$font-size: 20px;
+$color: #000;

@@ -1,10 +1,12 @@
 {
-  "name": "Colours",
+  "name": "Colorus",
   "version": "1.0.0",
-  "description": "Colours app",
+  "description": "Colorus app",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "build --dir",
+    "dist": "build"
   },
   "repository": "https://github.com/KorolPaul/colour",
   "keywords": [
@@ -19,5 +21,11 @@
     "gulp-connect": "^5.0.0",
     "gulp-image": "^2.9.0",
     "gulp-sass": "^3.1.0"
+  },
+  "build": {
+    "appId": "Colorus",
+    "mac": {
+      "category": "util"
+    }
   }
 }

@@ -9,19 +9,32 @@
         <header>
             <div class="menu">
                 <a href="#" class="menu_icon menu_icon__theme">theme</a>
-                <a href="#" class="menu_icon menu_icon__bookmark">bookmark</a>
-                <a href="#" class="menu_icon menu_icon__menu">menu</a>
+                <a href="#" class="menu_icon menu_icon__tags" id="mode-trigger">tags</a>
+                <a href="#" class="menu_icon menu_icon__menu" id="menu-trigger">menu</a>
             </div>
             <input type="text" id="search" class="search">
         </header>
         <main>
-            <div class="tabs">
-                <a href="#" class="tabs_link">Colors</a>
+            <div class="tabs mode-section visible">
+                <a href="#" class="tabs_link tabs_link__active">Colors</a>
                 <a href="#" class="tabs_link">Gradients</a>
                 <div class="tabs_content" id="colors-holder"></div>
                 <div class="tabs_content" id="gradients-holder"></div>
             </div>
+            <div class="tags mode-section" id="triggers-holder">
+                
+            </div>
         </main>
+
+        <div class="popup" id="menu-popup">
+            <a href="#" class="popup_item popup_item__add" id="add-popup-trigger">Add code</a>
+            <a href="#" class="popup_item popup_item__settings" id="settings-trigger">Code settings</a>
+            <a href="#" class="popup_item popup_item__open" id="explorer-trigger">Open in finder</a>
+        </div>
+        <div class="popup popup__add" id="add-popup">
+            <textarea id="color-code"></textarea>
+            <button id="add-color">Add</button>
+        </div>
     </body>
     <script>
         require('./renderer.js')

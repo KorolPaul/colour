@@ -1,0 +1,30 @@
+.menu {
+    float: right;
+
+    &_icon {
+        @include invisible-text;
+        display: inline-block;
+        margin: 0 0 0 24px;
+
+        &__theme {
+            background: url(#{$img-path}/dark.svg) no-repeat;
+            width: 12px;
+            height: 16px;
+        }
+        &__tags {
+            background: url(#{$img-path}/tags.svg) no-repeat center 0;
+            width: 16px;
+            height: 16px;
+        }
+        &__colors {
+            background: url(#{$img-path}/colors.svg) no-repeat;
+            width: 16px;
+            height: 16px;
+        }
+        &__menu {
+            background: url(#{$img-path}/menu.svg) no-repeat;
+            width: 19px;
+            height: 14px;
+        }
+    }
+}

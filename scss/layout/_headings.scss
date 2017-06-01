@@ -1,0 +1,47 @@
+%heading1 {
+    font: 34px $headings_font-family;
+}
+%heading2 {
+    font: 20px $headings_font-family;
+}
+%heading3 {
+    font-size: 20px;
+}
+%heading4 {
+    font-size: 16px;
+}
+%heading5 {
+    font: 14px $headings_font-family;
+}
+%heading6 {
+    font-size: 14px;
+}
+
+
+h1, 
+.heading-1 {
+    @extend %heading1;
+}
+h2,
+.heading-2 {
+    @extend %heading2;
+}
+h3,
+.heading-3 {
+    @extend %heading3;
+}
+h4,
+.heading-4 {
+    @extend %heading4;
+}
+h5,
+.heading-5 {
+    @extend %heading5;
+}
+h6,
+.heading-6 {
+    @extend %heading6;
+}
+
+
+
