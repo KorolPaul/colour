@@ -1,0 +1,14 @@
+.tag {
+    &_title {
+        font-weight: bold;
+    }
+    &_colors {
+        display: flex;
+        align-items: stretch;
+        height: 30px;
+
+        div {
+            flex-grow: 1;
+        }
+    }
+}

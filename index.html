@@ -12,7 +12,7 @@
                 <a href="#" class="menu_icon menu_icon__tags" id="mode-trigger">tags</a>
                 <a href="#" class="menu_icon menu_icon__menu" id="menu-trigger">menu</a>
             </div>
-            <input type="text" id="search" class="search">
+            <input type="text" id="search" class="search" placeholder="Search">
         </header>
         <main>
             <div class="tabs mode-section visible">
@@ -21,7 +21,7 @@
                 <div class="tabs_content" id="colors-holder"></div>
                 <div class="tabs_content" id="gradients-holder"></div>
             </div>
-            <div class="tags mode-section" id="triggers-holder">
+            <div class="tags mode-section" id="tags-holder">
                 
             </div>
         </main>
@@ -34,6 +34,12 @@
         <div class="popup popup__add" id="add-popup">
             <textarea id="color-code"></textarea>
             <button id="add-color">Add</button>
+        </div>
+
+        <div class="context" id="context">
+            <div class="tags-list" id="tags-list"></div>
+            <input id="tag-input" placeholder="add tag" />
+            <button id="delete-tag">Delete</button>            
         </div>
     </body>
     <script>

@@ -1,7 +1,7 @@
 .popup {
-    background: #f4f4f6;
+    background: $popup_background;
     border-radius: 5px;
-    padding: 18px;
+    padding: $popup_padding;
     min-height: 135px;
     display: flex;
     flex-direction: column;

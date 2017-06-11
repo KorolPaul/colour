@@ -1,0 +1,16 @@
+.context {
+    background: $popup_background;
+    border-radius: 5px;
+    padding: $popup_padding;
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+    position: absolute;
+    transition: .2s ease opacity;
+
+    &.visible {
+        opacity: 1;
+        z-index: 1;
+        visibility: visible;
+    }
+}

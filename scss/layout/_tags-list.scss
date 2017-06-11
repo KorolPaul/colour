@@ -1,0 +1,10 @@
+.tags-list {
+    display: inline-block;
+
+    &_item {
+        border: 1px solid currentColor;
+        border-radius: 3px;
+        margin: 0 5px 0 0;
+    }
+}
+

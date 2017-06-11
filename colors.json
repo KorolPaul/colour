@@ -1,1 +1,1 @@
-[{"color":"#ff0000","tags":"test"},{"color":"#fff000","tags":"test"}]
+[{"color":"#ff0000","tags":["test","super","test2"]},{"color":"#fff000","tags":["super"]}]
