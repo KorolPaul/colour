@@ -10,21 +10,40 @@
             background: url(#{$img-path}/dark.svg) no-repeat;
             width: 12px;
             height: 16px;
+
+            .dark & {
+                background-image: url(#{$img-path__dark}/light.svg);
+                width: 20px;
+                height: 20px;
+                margin: -2px 0 0;
+            }
         }
         &__tags {
             background: url(#{$img-path}/tags.svg) no-repeat center 0;
             width: 16px;
             height: 16px;
+
+            .dark & {
+                background-image: url(#{$img-path__dark}/tags.svg);
+            }
         }
         &__colors {
             background: url(#{$img-path}/colors.svg) no-repeat;
             width: 16px;
             height: 16px;
+
+            .dark & {
+                background-image: url(#{$img-path__dark}/colors.svg);
+            }
         }
         &__menu {
             background: url(#{$img-path}/menu.svg) no-repeat;
             width: 19px;
             height: 14px;
+
+            .dark & {
+                background-image: url(#{$img-path__dark}/menu.svg);
+            }
         }
     }
 }

@@ -1,0 +1,48 @@
+.toggle {
+    display: flex;
+    align-items: center;
+
+    input {
+        display: none;
+    }
+    &_line {
+        border: 1px solid $color;
+        border-radius: 5px;
+        display: inline-block;
+        position: relative;
+        height: 4px;
+        width: 22px;
+        margin: 0 10px;
+        order: 2;
+    }
+    &_round {
+        border: 1px solid $color;
+        border-radius: 50%;
+        background: #f7f7f9;
+        position: absolute;
+        height: 10px;
+        width: 10px;
+        left: 0;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        transition: .15s ease-in-out left;
+
+        .toggle input:checked + .toggle_line & {
+            left: 100%;
+        }
+    }
+    &_title {
+        color: #afafb1;
+        transition: .15s ease-in-out color;
+
+        & + & {
+            order: 3;
+        }
+        .toggle input:not(:checked) + .toggle_line + & {
+            color: $color;
+        }
+        .toggle input:checked + .toggle_line + & + & {
+            color: $color;
+        }
+    }
+}

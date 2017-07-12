@@ -1,9 +1,4 @@
 .tabs {
-    display: none;
-
-    &.visible {
-        display: block;
-    }
 
     &_link {
         color: $color;
@@ -16,6 +11,9 @@
 
         &__active {
             opacity: 1;
+        }
+        .dark & {
+            color: $color__dark;
         }
     }
     &_content {

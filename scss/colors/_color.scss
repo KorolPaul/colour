@@ -4,4 +4,15 @@
     margin: 0 8px;
     width: 72px;
     height: 72px;
+
+    &__gradient {
+        display: none;
+    }
+    .tabs_content__gradient & {
+        display: none;
+
+        &__gradient {
+            display: inline-block;
+        }
+    }
 }

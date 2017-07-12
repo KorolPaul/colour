@@ -14,6 +14,14 @@
     visibility: hidden;
     transition: .2s ease-in-out opacity;
 
+    .dark & {
+        background: $popup_background__dark;
+
+        &:before {
+            border-bottom-color: $popup_background__dark;
+        }
+    }
+
     &__visible {
         opacity: 1;
         z-index: 1;
@@ -25,7 +33,7 @@
         position: absolute;
         top: -24px;
         right: 12px;
-        border-color: transparent transparent #f4f4f6 transparent;
+        border-color: transparent transparent $popup_background transparent;
         border-style: solid;
         border-width: 12px;
     }
@@ -36,14 +44,30 @@
         padding: 0 0 0 35px;
         text-decoration: none;
 
+        .dark & {
+            color: $color__dark;
+        }
+
         &__add {
             background: url(#{$img-path}/plus.svg) no-repeat 3px center;
+
+           .dark & {
+                background-image: url(#{$img-path__dark}/plus.svg);
+            } 
         }
         &__settings {
             background: url(#{$img-path}/code.svg) no-repeat 0 center;
+
+            .dark & {
+                background-image: url(#{$img-path__dark}/code.svg);
+            } 
         }
         &__open {
             background: url(#{$img-path}/folder.svg) no-repeat 2px center;
+
+            .dark & {
+                background-image: url(#{$img-path__dark}/folder.svg);
+            } 
         }
     }
 }

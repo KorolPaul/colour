@@ -1,8 +1,13 @@
 .search {
     @extend %heading1;
+    background: transparent;
     border-color: rgba(0, 0, 0, .1);
     border-width: 0 0 2px 0;
     margin: 26px 0;
     padding: 9px 0;
     width: 100%;
+
+    .dark & {
+        color: $color__dark;
+    }
 }

@@ -8,21 +8,21 @@
     <body>
         <header>
             <div class="menu">
-                <a href="#" class="menu_icon menu_icon__theme">theme</a>
+                <a href="#" class="menu_icon menu_icon__theme" id="theme-trigger">theme</a>
                 <a href="#" class="menu_icon menu_icon__tags" id="mode-trigger">tags</a>
                 <a href="#" class="menu_icon menu_icon__menu" id="menu-trigger">menu</a>
             </div>
-            <input type="text" id="search" class="search" placeholder="Search">
         </header>
         <main>
             <div class="tabs mode-section visible">
+                <input type="text" id="search-colors" class="search" placeholder="Search">
                 <a href="#" class="tabs_link tabs_link__active">Colors</a>
                 <a href="#" class="tabs_link">Gradients</a>
                 <div class="tabs_content" id="colors-holder"></div>
-                <div class="tabs_content" id="gradients-holder"></div>
             </div>
-            <div class="tags mode-section" id="tags-holder">
-                
+            <div class="tags mode-section">
+                <input type="text" id="search-tags" class="search" placeholder="Search">
+                <div id="tags-holder"></div>
             </div>
         </main>
 
@@ -34,6 +34,26 @@
         <div class="popup popup__add" id="add-popup">
             <textarea id="color-code"></textarea>
             <button id="add-color">Add</button>
+        </div>
+        <div class="popup popup__settings" id="settings-popup">
+            <p>Color code output</p>
+            <div class="toggle">
+                <input type="checkbox" id="color-format">
+                <label class="toggle_line" for="color-format">
+                    <div class="toggle_round"></div>
+                </label>
+                <span class="toggle_title">HEX</span>
+                <span class="toggle_title">RGB</span>
+            </div>
+            <p>Gradient code output</p>
+            <div class="toggle">
+                <input type="checkbox" id="gradient-format">
+                <label class="toggle_line" for="gradient-format">
+                    <div class="toggle_round"></div>
+                </label>
+                <span class="toggle_title">SVG</span>
+                <span class="toggle_title">CSS</span>
+            </div>
         </div>
 
         <div class="context" id="context">
