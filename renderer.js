@@ -106,11 +106,16 @@ function init() {
 function renderColor(colorCode) {
     let el = document.createElement('div');
     el.classList.add('color');
-    el.style.background = colorCode;
     el.addEventListener('contextmenu', showContextMenu);
     el.addEventListener('click', copyToClipBoard);
 
-    if (colorCode.indexOf('gradient') != -1) {
+    if (colorCode.indexOf('svg') != -1) {
+        el.style.background = convertToCSS(colorCode);
+    } else {
+        el.style.background = colorCode;
+    }
+
+    if (colorCode.indexOf('gradient') != -1 || colorCode.indexOf('stop-color') != -1) {
         el.classList.add('color__gradient');
     }
 
@@ -345,11 +350,9 @@ function convertToRGB(color) {
 }
 
 function convertToSVG(color) {
-    //linear-gradient(rgb(30, 87, 153) 0%, rgb(125, 185, 232) 100%)
-    let colors = color.match(/(rgba?\(.+?\))|(#w{3,6}})/g),
+    let colors = color.match(/(rgba?\(.+?\))|(#\w{3,6})/g),
         colorsString = '',
         gradientDirection = '';
-    
     
     if (colors) {
         for (let i = 0; i < colors.length; i++) {
@@ -366,15 +369,47 @@ function convertToSVG(color) {
             gradientDirection = 'x1="0%" y1="0%" x2="0%" y2="100%"';
         }
 
-        let svg = '<svg width="131px" height="122px" viewBox="229 164 131 122" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><linearGradient ' + gradientDirection + ' id="linearGradient-1">' + colorsString + '</linearGradient></defs><rect id="Rectangle" stroke="none" fill="url(#linearGradient-1)" fill-rule="evenodd" x="229" y="164" width="131" height="122"></rect></svg>';
+        let svg = `<svg width="131px" height="122px" viewBox="229 164 131 122" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                        <defs>
+                            <linearGradient ` + gradientDirection + ` id="linearGradient-1">` + colorsString + `</linearGradient>
+                        </defs>
+                        <rect id="Rectangle" stroke="none" fill="url(#linearGradient-1)" fill-rule="evenodd" x="229" y="164" width="131" height="122"></rect>
+                    </svg>`;
 
         return svg;
+    } else {
+        return color;
     }
     
 }
 
 function convertToCSS(color) {
+    let colors = color.match(/(rgba?\(.+?\))|(#[0-9a-f]{3,6})/igm),
+        colorsString = 'linear-gradient(',
+        gradientDirection = '';
     
+
+    if (colors) {
+        if (color.indexOf('x1="0%" y1="0%" x2="100%" y2="0%"') !== -1) {
+            gradientDirection = 'to left';
+        } else if (color.indexOf('x1="100%" y1="0%" x2="0%" y2="0%"') !== -1) {
+            gradientDirection = 'to right';
+        } else if (color.indexOf('x1="0%" y1="100%" x2="0%" y2="0%"') !== -1) {
+            gradientDirection = 'to top';
+        } else {
+            gradientDirection = 'to bottom';
+        }
+
+        colorsString += gradientDirection;
+        for (let i = 0; i < colors.length; i++) {
+            colorsString += ', ' +  colors[i] + ' ' + (i === 0 ? 0 : i * (100/i)) + '%';
+        }
+        colorsString += ')';
+
+        return colorsString;
+    } else {
+        return color;
+    }
 }
 
 function changeTheme() {
@@ -392,19 +427,7 @@ function setTheme() {
     } else {
         document.body.classList.remove('dark');
     }
+    
 }
 
 init();
-/*
-<svg width="131px" height="122px" viewBox="229 164 131 122" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
-    <desc>Created with Sketch.</desc>
-    <defs>
-        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
-            <stop stop-color="#FFFFFF" offset="0%"></stop>
-            <stop stop-color="#000000" offset="100%"></stop>
-        </linearGradient>
-    </defs>
-    <rect id="Rectangle" stroke="none" fill="url(#linearGradient-1)" fill-rule="evenodd" x="229" y="164" width="131" height="122"></rect>
-</svg>
-*/
