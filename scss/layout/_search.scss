@@ -4,9 +4,14 @@
     border-color: rgba(0, 0, 0, .1);
     border-width: 0 0 2px 0;
     margin: 26px 0;
-    padding: 9px 0;
+    padding: 4px 0 9px;
     width: 100%;
 
+    &::-webkit-input-placeholder {
+        color: $color;
+        opacity: .2;
+
+    } 
     .dark & {
         color: $color__dark;
     }

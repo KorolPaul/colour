@@ -1,8 +1,24 @@
 .tabs {
+    display: none;
+    position: relative;
 
+    &.visible {
+        display: block;
+    }
+    &:before {
+        content: '';
+        position: absolute;
+        top: 137px;
+        left: 0;
+        right: 0;
+        border-top: 2px solid $color;
+        opacity: .2;
+    }
+    
     &_link {
         color: $color;
-        border-bottom: 1px solid currentColor;
+        font-family: $headings_font-family;
+        border-bottom: 2px solid transparent;
         font-size: 20px;
         margin: 0 33px 0 0;
         padding: 0 0 5px;
@@ -10,6 +26,7 @@
         text-decoration: none;
 
         &__active {
+            border-color: currentColor;
             opacity: 1;
         }
         .dark & {

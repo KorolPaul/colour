@@ -1,0 +1,5 @@
+.delete {
+    background: url(#{$img-path}/delete.svg) no-repeat 3px center;
+    text-align: left;
+    padding: $popup_padding $popup_padding $popup_padding 33px;
+}

@@ -1,6 +1,7 @@
 const ipc = require('electron').ipcRenderer,
       clipboard = require('electron').clipboard,
-      fs = require('fs');
+      fs = require('fs'),
+      { dialog } = require('electron').remote;
 
 const explorerTrigger = document.getElementById('explorer-trigger'),
       addPopupTrigger = document.getElementById('add-popup-trigger'),
@@ -13,7 +14,6 @@ const explorerTrigger = document.getElementById('explorer-trigger'),
       settingsPopup = document.getElementById('settings-popup'),
       addColorTrigger = document.getElementById('add-color'),
       colorsHolder = document.getElementById('colors-holder'),
-      gradientsHolder = document.getElementById('gradients-holder'),
       tagsHolder = document.getElementById('tags-holder'),
       triggersHolder = document.getElementById('triggers-holder'),
       colorInput = document.getElementById('color-code'),
@@ -35,6 +35,7 @@ let colorsJSON = [],
 
 function init() {
     menuTrigger.addEventListener('click', function () {
+        hidePopups();
         menuPopup.classList.toggle('popup__visible');
     });
 
@@ -42,11 +43,13 @@ function init() {
         changeTheme();
     });
 
-    addPopupTrigger.addEventListener('click', function () {
+    addPopupTrigger.addEventListener('click', function (e) {
+        hidePopups();
         addPopup.classList.toggle('popup__visible');
     });
 
-    settingsPopupTrigger.addEventListener('click', function () {
+    settingsPopupTrigger.addEventListener('click', function (e) {
+        hidePopups();
         settingsPopup.classList.toggle('popup__visible');
     });
 
@@ -54,6 +57,7 @@ function init() {
         renderColor(colorInput.value);
         saveColor(colorInput.value);
 
+        hidePopups();
         addPopup.classList.toggle('popup__visible');    
     });
 
@@ -65,14 +69,36 @@ function init() {
     });
 
     explorerTrigger.addEventListener('click', function (event) {
-        ipc.send('open-file-dialog')
+        let file = dialog.showOpenDialog({ properties: ['openFile'] })[0];
+
+        fs.readFile(file, 'utf-8', (err, data) => {
+            if (err) {
+                alert('File format isn\'t right');
+                console.log("An error ocurred reading the file :" + err.message);
+                return;
+            }
+            colorsHolder.innerHTML = '';
+            tagsHolder.innerHTML = '';
+
+            fs.writeFile('colors.json', data, (err) => {
+                if (err) {
+                    console.log("An error ocurred creating the file " + err.message);
+                }
+            });
+    
+            loadColors();
+        });
+
     })
 
-    document.body.addEventListener('click', hideContextMenu);    
+    document.body.addEventListener('click', hideContextMenu);
+    document.body.addEventListener('click', hidePopups);    
+    document.querySelectorAll('.popup').forEach((el) => {
+        el.addEventListener('click', (e) => {
+            e.stopImmediatePropagation();
+        })
+    });
 
-    ipc.on('selected-directory', function (event, path) {
-        document.getElementById('selected-file').innerHTML = `You selected: ${path}`
-    })
 
     tagInput.addEventListener('keyup', saveTag);
 
@@ -147,14 +173,18 @@ function loadColors(file) {
             console.log("An error ocurred reading the file :" + err.message);
             return;
         }
+        
+        try {
+            colorsJSON = JSON.parse(data);
+            colorsJSON.forEach(function (el) {
+                renderColor(el.color);
+            });
 
-        colorsJSON = JSON.parse(data);
-
-        colorsJSON.forEach(function (el) {
-            renderColor(el.color);
-        });
-
-        loadTags();
+            loadTags();
+        } catch (err) {
+            console.log(err);
+        }
+        
     });
 }
 
@@ -172,8 +202,25 @@ function showContextMenu(e) {
         tagsList.appendChild(tag);
     });
 
-    contextMenu.style.left = e.target.offsetLeft + e.target.offsetWidth - 15 + 'px';
-    contextMenu.style.top = e.target.offsetTop + e.target.offsetHeight - 15 + 'px';
+    let contextWidth = contextMenu.getBoundingClientRect().width,
+        contextHeight = contextMenu.getBoundingClientRect().height,
+        pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight,
+                        document.documentElement.scrollHeight, document.documentElement.offsetHeight),
+        offcet = 15;
+    
+    if (e.target.offsetLeft + e.target.offsetWidth + contextWidth < window.innerWidth - offcet) {
+        contextMenu.style.left = e.target.offsetLeft + e.target.offsetWidth - offcet + 'px';
+    } else {
+        contextMenu.style.left = window.innerWidth - contextWidth - offcet + 'px';        
+    }
+
+    if (e.target.offsetTop + e.target.offsetHeight + contextHeight < pageHeight - offcet) {
+        contextMenu.style.top = e.target.offsetTop + e.target.offsetHeight - offcet + 'px';
+    } else {
+        contextMenu.style.top = pageHeight - contextHeight - offcet + 'px';        
+    }
+
+    
     contextMenu.classList.add('visible');
 }
 
@@ -256,9 +303,35 @@ function getIndex(el) {
 
 function searchColor(e) {
     colorsHolder.innerHTML = '';
-    colorsJSON.forEach(function (el) {
-        if (el.color.indexOf(e.target.value) != -1) {            
+    colorsJSON.forEach(function (el) {    
+        if (el.color.indexOf(e.target.value) != -1) {
             renderColor(el.color);
+        }
+        
+        if (el.color.indexOf('svg') === -1 && el.color.indexOf('gradient') === -1) {
+            let rgbString = convertToRGB(el.color),
+                rgb = rgbString.substring(rgbString.indexOf('(') + 1, rgbString.indexOf(')')).split(',');
+
+            let HSL = convertToHSL(+rgb[0], +rgb[1], +rgb[2])[0],
+                hue, color;
+
+            if (HSL <= 19 || HSL > 340) {
+                color = 'red';
+            } else if (HSL > 19 && HSL <= 45) {
+                color = 'orange';
+            } else if (HSL > 45 && HSL <= 68) {
+                color = 'yellow';
+            } else if (HSL > 68 && HSL <= 160) {
+                color = 'green';
+            } else if (HSL > 160 && HSL <= 260) {
+                color = 'purple';
+            } else if (HSL > 160 && HSL <= 260) {
+                color = 'purple';
+            }
+
+            if (color === e.target.value) {
+                renderColor(el.color);
+            }
         }
     });
 }
@@ -341,12 +414,29 @@ function convertToRGB(color) {
         return color;
     }
 
-    let rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result ? {
-        r: parseInt(rgb[1], 16),
-        g: parseInt(rgb[2], 16),
-        b: parseInt(rgb[3], 16)
-    } : null;
+    let rgb = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+    
+    return rgb ? 'rgb(' + parseInt(rgb[1], 16) + ',' + parseInt(rgb[2], 16) + ',' + parseInt(rgb[3], 16) + ')' : null;
+}
+
+function convertToHSL(r, g, b) {
+    var max = Math.max(r, g, b), min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2;
+
+    if(max == min){
+        h = s = 0; // achromatic
+    }else{
+        var d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch(max){
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+    }
+  
+    return [h * 360 , s, l];
 }
 
 function convertToSVG(color) {
@@ -428,6 +518,21 @@ function setTheme() {
         document.body.classList.remove('dark');
     }
     
+}
+
+function hidePopups(e) {
+    try {
+        console.log(e.target)
+        if (e.target === menuTrigger || e.target.classList.contains('popup_item')) {
+            return
+        }
+    } catch (err) {
+        console.log(err)
+    }
+    
+    document.querySelectorAll('.popup').forEach(function (el) {
+        el.classList.remove('popup__visible');
+    });
 }
 
 init();

@@ -4,7 +4,7 @@
     &_icon {
         @include invisible-text;
         display: inline-block;
-        margin: 0 0 0 24px;
+        margin: 0 0 0 16px;
 
         &__theme {
             background: url(#{$img-path}/dark.svg) no-repeat;

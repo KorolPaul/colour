@@ -1,0 +1,20 @@
+textarea {
+    background: transparent;    
+    border: none;
+    resize: none;
+    font-size: 13px;
+    height: 165px;
+}
+
+.textarea-border {
+    position: absolute;
+    top: 16px;
+    left: 25px;
+    border-left: 2px solid transparent;
+    height: 23px;
+    transition: .2s ease border-color;
+    
+    textarea:placeholder-shown + & {
+        border-color: $color;
+    }
+}

@@ -33,6 +33,7 @@
     }
     &_title {
         color: #afafb1;
+        font-family: $headings_font-family;
         transition: .15s ease-in-out color;
 
         & + & {

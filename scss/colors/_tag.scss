@@ -1,11 +1,14 @@
 .tag {
     &_title {
-        font-weight: bold;
+        margin: 0;
     }
     &_colors {
+        border-radius: 5px;
         display: flex;
         align-items: stretch;
-        height: 30px;
+        height: 48px;
+        overflow: hidden;
+        margin: 5px 0 28px;
 
         div {
             flex-grow: 1;

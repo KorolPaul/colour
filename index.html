@@ -6,7 +6,7 @@
         <link rel='stylesheet' href='style.css'>
     </head>
     <body>
-        <header>
+        <header class="header">
             <div class="menu">
                 <a href="#" class="menu_icon menu_icon__theme" id="theme-trigger">theme</a>
                 <a href="#" class="menu_icon menu_icon__tags" id="mode-trigger">tags</a>
@@ -26,40 +26,53 @@
             </div>
         </main>
 
-        <div class="popup" id="menu-popup">
+        <div class="popup popup__main" id="menu-popup">
             <a href="#" class="popup_item popup_item__add" id="add-popup-trigger">Add code</a>
             <a href="#" class="popup_item popup_item__settings" id="settings-trigger">Code settings</a>
             <a href="#" class="popup_item popup_item__open" id="explorer-trigger">Open in finder</a>
         </div>
         <div class="popup popup__add" id="add-popup">
-            <textarea id="color-code"></textarea>
-            <button id="add-color">Add</button>
+            <div class="popup_item">
+                <textarea id="color-code" placeholder="   #hex, rgb or css"></textarea>
+                <div class="textarea-border"></div>
+            </div>
+            <div class="popup_item popup_item__small-indent">
+                <button id="add-color">Add</button>
+            </div>
         </div>
         <div class="popup popup__settings" id="settings-popup">
-            <p>Color code output</p>
-            <div class="toggle">
-                <input type="checkbox" id="color-format">
-                <label class="toggle_line" for="color-format">
-                    <div class="toggle_round"></div>
-                </label>
-                <span class="toggle_title">HEX</span>
-                <span class="toggle_title">RGB</span>
+            <div class="popup_item">
+                <p class="popup_title">Color code output</p>
+                <div class="toggle">
+                    <input type="checkbox" id="color-format">
+                    <label class="toggle_line" for="color-format">
+                        <div class="toggle_round"></div>
+                    </label>
+                    <span class="toggle_title">HEX</span>
+                    <span class="toggle_title">RGB</span>
+                </div>
             </div>
-            <p>Gradient code output</p>
-            <div class="toggle">
-                <input type="checkbox" id="gradient-format">
-                <label class="toggle_line" for="gradient-format">
-                    <div class="toggle_round"></div>
-                </label>
-                <span class="toggle_title">SVG</span>
-                <span class="toggle_title">CSS</span>
+            <div class="popup_item">
+                <p class="popup_title">Gradient code output</p>
+                <div class="toggle">
+                    <input type="checkbox" id="gradient-format">
+                    <label class="toggle_line" for="gradient-format">
+                        <div class="toggle_round"></div>
+                    </label>
+                    <span class="toggle_title">SVG</span>
+                    <span class="toggle_title">CSS</span>
+                </div>
             </div>
         </div>
 
         <div class="context" id="context">
-            <div class="tags-list" id="tags-list"></div>
-            <input id="tag-input" placeholder="add tag" />
-            <button id="delete-tag">Delete</button>            
+            <div class="popup_item">
+                <div class="tags-list" id="tags-list"></div>
+                <input class="context_input" id="tag-input" placeholder="add tag" />
+            </div>
+            <div class="popup_item popup_item__small-indent">
+                <button class="delete" id="delete-tag">Delete</button>
+            </div>
         </div>
     </body>
     <script>

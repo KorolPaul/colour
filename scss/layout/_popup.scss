@@ -1,11 +1,8 @@
 .popup {
     background: $popup_background;
     border-radius: 5px;
-    padding: $popup_padding;
-    min-height: 135px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding: 0;
+    min-width: 208px;
     position: absolute;
     top: 75px;
     right: 10px;
@@ -39,35 +36,55 @@
     }
 
     &_item {
+        border-bottom: 1px solid #fff;
         color: $color;
+        font-size: 16px;
         display: block;
-        padding: 0 0 0 35px;
+        padding: $popup_padding;
         text-decoration: none;
 
+        &:last-child {
+            border-bottom: none;
+        }
+        .popup__add & {
+            padding-left: 23px;
+            padding-right: 23px;
+        }
         .dark & {
             color: $color__dark;
         }
 
+        &__small-indent {
+            padding-top: 2px;
+            padding-bottom: 2px;
+        }
         &__add {
-            background: url(#{$img-path}/plus.svg) no-repeat 3px center;
+            background: url(#{$img-path}/plus.svg) no-repeat 21px center;
+            padding-left: $popup_padding + 35px;
 
            .dark & {
                 background-image: url(#{$img-path__dark}/plus.svg);
             } 
         }
         &__settings {
-            background: url(#{$img-path}/code.svg) no-repeat 0 center;
-
+            background: url(#{$img-path}/code.svg) no-repeat 18px center;
+            padding-left: $popup_padding + 35px;
+            
             .dark & {
                 background-image: url(#{$img-path__dark}/code.svg);
             } 
         }
         &__open {
-            background: url(#{$img-path}/folder.svg) no-repeat 2px center;
-
+            background: url(#{$img-path}/folder.svg) no-repeat 20px center;
+            padding-left: $popup_padding + 35px;
+            
             .dark & {
                 background-image: url(#{$img-path__dark}/folder.svg);
             } 
         }
+    }
+    &_title {
+        font-size: 14px;
+        margin: 0 0 7px;
     }
 }
