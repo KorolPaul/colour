@@ -4,7 +4,7 @@
   "description": "Colorus app",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "start": "electron . --disable-background-timer-throttling",
     "pack": "build --dir",
     "dist": "build"
   },

@@ -35,7 +35,6 @@ let colorsJSON = [],
 
 function init() {
     menuTrigger.addEventListener('click', function () {
-        hidePopups();
         menuPopup.classList.toggle('popup__visible');
     });
 
@@ -132,6 +131,7 @@ function init() {
 function renderColor(colorCode) {
     let el = document.createElement('div');
     el.classList.add('color');
+    el.classList.add('loading');
     el.addEventListener('contextmenu', showContextMenu);
     el.addEventListener('click', copyToClipBoard);
 
@@ -146,6 +146,10 @@ function renderColor(colorCode) {
     }
 
     colorsHolder.appendChild(el);
+
+    setTimeout(() => {
+        el.classList.remove('loading');
+    }, 200);
 }
 
 function saveColor(colorCode) {
@@ -176,8 +180,11 @@ function loadColors(file) {
         
         try {
             colorsJSON = JSON.parse(data);
-            colorsJSON.forEach(function (el) {
-                renderColor(el.color);
+           
+            colorsJSON.forEach(function (el, i) {
+                setTimeout(function() {
+                    renderColor(el.color);
+                }, i * 15);
             });
 
             loadTags();
@@ -303,9 +310,11 @@ function getIndex(el) {
 
 function searchColor(e) {
     colorsHolder.innerHTML = '';
-    colorsJSON.forEach(function (el) {    
+    colorsJSON.forEach(function (el, i) {    
         if (el.color.indexOf(e.target.value) != -1) {
-            renderColor(el.color);
+            setTimeout(function() {
+                renderColor(el.color);
+            }, i * 15);
         }
         
         if (el.color.indexOf('svg') === -1 && el.color.indexOf('gradient') === -1) {
@@ -330,7 +339,9 @@ function searchColor(e) {
             }
 
             if (color === e.target.value) {
-                renderColor(el.color);
+                setTimeout(function() {
+                    renderColor(el.color);
+                }, i * 15);
             }
         }
     });
@@ -522,7 +533,6 @@ function setTheme() {
 
 function hidePopups(e) {
     try {
-        console.log(e.target)
         if (e.target === menuTrigger || e.target.classList.contains('popup_item')) {
             return
         }

@@ -24,7 +24,12 @@
         padding: 0 0 5px;
         opacity: .2;
         text-decoration: none;
+        transition: .2s ease-in-out opacity,
+                    .2s ease-in-out border-color;
 
+        &:hover {
+            opacity: 1; 
+        }
         &__active {
             border-color: currentColor;
             opacity: 1;
