@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron . --disable-background-timer-throttling",
     "pack": "build --dir",
-    "dist": "build"
+    "dist": "build --mac"
   },
   "repository": "https://github.com/KorolPaul/colour",
   "keywords": [
@@ -16,6 +16,7 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^1.6.13",
+    "electron-builder": "^19.37.2",
     "gulp-autoprefixer": "^4.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-connect": "^5.0.0",
