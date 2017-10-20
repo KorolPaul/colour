@@ -4,11 +4,6 @@ body {
     font-size: $font-size;
     margin: 0;
     padding: 0 24px;
-
-    &.dark {
-        background: #33384b;
-        color: $color__dark;
-    }
 }
 
 a,

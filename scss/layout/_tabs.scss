@@ -34,9 +34,6 @@
             border-color: currentColor;
             opacity: 1;
         }
-        .dark & {
-            color: $color__dark;
-        }
     }
     &_content {
         margin: 0 -8px;

@@ -8,7 +8,6 @@ const explorerTrigger = document.getElementById('explorer-trigger'),
       settingsPopupTrigger = document.getElementById('settings-trigger'),
       modeTrigger = document.getElementById('mode-trigger'),
       menuTrigger = document.getElementById('menu-trigger'),
-      themeTrigger = document.getElementById('theme-trigger'),
       menuPopup = document.getElementById('menu-popup'),
       addPopup = document.getElementById('add-popup'),
       settingsPopup = document.getElementById('settings-popup'),
@@ -38,9 +37,6 @@ function init() {
         menuPopup.classList.toggle('popup__visible');
     });
 
-    themeTrigger.addEventListener('click', function () {
-        changeTheme();
-    });
 
     addPopupTrigger.addEventListener('click', function (e) {
         hidePopups();
@@ -338,7 +334,7 @@ function searchColor(e) {
                 color = 'purple';
             }
 
-            if (color === e.target.value) {
+            if (color.indexOf(e.target.value) != -1) {
                 setTimeout(function() {
                     renderColor(el.color);
                 }, i * 15);
@@ -511,15 +507,6 @@ function convertToCSS(color) {
     } else {
         return color;
     }
-}
-
-function changeTheme() {
-    if (localStorage.theme === 'dark') {
-        localStorage.theme = 'white';
-    } else {
-        localStorage.theme = 'dark';
-    }
-    setTheme();
 }
 
 function setTheme() {

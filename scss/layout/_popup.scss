@@ -13,14 +13,6 @@
                 .1s ease-in-out transform,
                 .2s ease-in-out visibility;
 
-    .dark & {
-        background: $popup_background__dark;
-
-        &:before {
-            border-bottom-color: $popup_background__dark;
-        }
-    }
-
     &__visible {
         opacity: 1;
         transform: scale(1)  translateY(0);
@@ -52,9 +44,6 @@
             padding-left: 23px;
             padding-right: 23px;
         }
-        .dark & {
-            color: $color__dark;
-        }
 
         &__small-indent {
             padding-top: 2px;
@@ -63,26 +52,14 @@
         &__add {
             background: url(#{$img-path}/plus.svg) no-repeat 21px center;
             padding-left: $popup_padding + 35px;
-
-           .dark & {
-                background-image: url(#{$img-path__dark}/plus.svg);
-            } 
         }
         &__settings {
             background: url(#{$img-path}/code.svg) no-repeat 18px center;
             padding-left: $popup_padding + 35px;
-            
-            .dark & {
-                background-image: url(#{$img-path__dark}/code.svg);
-            } 
         }
         &__open {
             background: url(#{$img-path}/folder.svg) no-repeat 20px center;
             padding-left: $popup_padding + 35px;
-            
-            .dark & {
-                background-image: url(#{$img-path__dark}/folder.svg);
-            } 
         }
     }
     &_title {

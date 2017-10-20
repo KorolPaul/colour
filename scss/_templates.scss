@@ -67,7 +67,7 @@
     @media all and (max-width: 479px) { @content; }
 }
 @mixin media($resolution) {
-    @media all and (max-width: $resolution) { @content; }
+    @media all and (min-width: $resolution) { @content; }
 }
 @mixin border-box {
     box-sizing: border-box;
