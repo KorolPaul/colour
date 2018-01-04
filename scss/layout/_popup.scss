@@ -36,7 +36,11 @@
         display: block;
         padding: $popup_padding;
         text-decoration: none;
+        transition: .2s ease-in-out opacity;
 
+        &:hover {
+            opacity: .6;
+        }
         &:last-child {
             border-bottom: none;
         }

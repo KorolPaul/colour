@@ -24,7 +24,8 @@ const explorerTrigger = document.getElementById('explorer-trigger'),
       searchTagsInput = document.getElementById('search-tags'),
       tabsLinks = document.querySelectorAll('.tabs_link'),
       colorFormatCheckbox = document.getElementById('color-format'),
-      gradientFormatCheckbox = document.getElementById('gradient-format');
+      gradientFormatCheckbox = document.getElementById('gradient-format'),
+      deleteButton = document.getElementById('delete-tag');
 
 let colorsJSON = [],
     selectedColor = 0,
@@ -55,7 +56,7 @@ function init() {
         saveColor(colorInput.value);
 
         hidePopups();
-        addPopup.classList.toggle('popup__visible');    
+        //addPopup.classList.toggle('popup__visible');    
     });
 
     modeTrigger.addEventListener('click', function () {
@@ -87,6 +88,8 @@ function init() {
         });
 
     })
+
+    deleteButton.addEventListener('click', deleteColor);
 
     document.body.addEventListener('click', hideContextMenu);
     document.body.addEventListener('click', hidePopups);    
@@ -162,7 +165,7 @@ function saveColor(colorCode) {
 }
 
 function saveJSON() {
-    fs.writeFile(`/${appPath}/colors.json`, JSON.stringify(colorsJSON), (err) => {
+    fs.writeFile(`${appPath}/colors.json`, JSON.stringify(colorsJSON), (err) => {
         if (err) {
             console.log("An error ocurred creating the file " + err.message);
         }
@@ -170,7 +173,7 @@ function saveJSON() {
 }
 
 function loadColors(file) {
-    fs.readFile(`/${appPath}/colors.json`, 'utf-8', (err, data) => {
+    fs.readFile(`${appPath}/colors.json`, 'utf-8', (err, data) => {
         if(err){
             alert(err.message)
             console.log("An error ocurred reading the file :" + err.message);
@@ -197,42 +200,46 @@ function loadColors(file) {
 function showContextMenu(e) {
     hideContextMenu(e);
 
-    selectedColor = getIndex(e.target)
+    selectedColor = getIndex(e.target);
 
-    tagsList.innerHTML = '';
-    colorsJSON[selectedColor].tags.forEach(function (el) {
-        let tag = document.createElement('span');
-        tag.classList.add('tag');
-        tag.innerText = el;
-
-        tagsList.appendChild(tag);
-    });
-
-    let contextWidth = contextMenu.getBoundingClientRect().width,
-        contextHeight = contextMenu.getBoundingClientRect().height,
-        pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight,
-                        document.documentElement.scrollHeight, document.documentElement.offsetHeight),
-        offcet = 15;
+    setTimeout(() => {
+        tagsList.innerHTML = '';
+        colorsJSON[selectedColor].tags.forEach(function (el) {
+            let tag = document.createElement('span');
+            tag.classList.add('tag');
+            tag.innerText = el;
     
-    if (e.target.offsetLeft + e.target.offsetWidth + contextWidth < window.innerWidth - offcet) {
-        contextMenu.style.left = e.target.offsetLeft + e.target.offsetWidth - offcet + 'px';
-    } else {
-        contextMenu.style.left = window.innerWidth - contextWidth - offcet + 'px';        
-    }
+            tagsList.appendChild(tag);
+        });
 
-    if (e.target.offsetTop + e.target.offsetHeight + contextHeight < pageHeight - offcet) {
-        contextMenu.style.top = e.target.offsetTop + e.target.offsetHeight - offcet + 'px';
-    } else {
-        contextMenu.style.top = pageHeight - contextHeight - offcet + 'px';        
-    }
+        let contextWidth = contextMenu.getBoundingClientRect().width * 2,
+            contextHeight = contextMenu.getBoundingClientRect().height,
+            pageHeight = Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight,
+                            document.documentElement.scrollHeight, document.documentElement.offsetHeight),
+            offset = 15;
+        console.log(contextWidth + " : " + window.innerWidth)
+        if (e.target.offsetLeft + e.target.offsetWidth + contextWidth < window.innerWidth - offset) {
+            contextMenu.style.left = e.target.offsetLeft + e.target.offsetWidth - offset + 'px';
+        } else {
+            contextMenu.style.left = window.innerWidth - contextWidth - offset + 'px';        
+        }
 
-    
-    contextMenu.classList.add('visible');
+        if (e.target.offsetTop + e.target.offsetHeight + contextHeight < pageHeight - offset) {
+            contextMenu.style.top = e.target.offsetTop + e.target.offsetHeight - offset + 'px';
+        } else {
+            contextMenu.style.top = pageHeight - contextHeight - offset + 'px';        
+        }
+
+        contextMenu.classList.add('visible');
+
+        document.addEventListener('click', addPopupCloseListener)
+    }, contextMenu.classList.contains('visible') ? 0 : 200)
 }
 
 function hideContextMenu(e) {
     if (!e.target.matches('#context ,#context *')) {
         contextMenu.classList.remove('visible');
+        document.addEventListener('remove', addPopupCloseListener)
     }
 }
 
@@ -526,13 +533,33 @@ function hidePopups(e) {
         if (e.target === menuTrigger || e.target.classList.contains('popup_item')) {
             return
         }
-    } catch (err) {
-        console.log(err)
-    }
+    } catch (err) {}
     
     document.querySelectorAll('.popup').forEach(function (el) {
         el.classList.remove('popup__visible');
     });
+}
+
+function deleteColor(e) {
+    colorsJSON.splice(selectedColor, 1);
+    colorsHolder.removeChild(colorsHolder.childNodes[selectedColor]);
+
+    saveJSON();
+    contextMenu.classList.remove('visible');
+}
+
+function addPopupCloseListener(e)  {
+    let target = e.target;
+
+    while(target != document) {
+        if(target === contextMenu) {
+            return;
+        }
+        
+        target = target.parentNode;
+    }
+    contextMenu.classList.remove('visible');
+    
 }
 
 init();

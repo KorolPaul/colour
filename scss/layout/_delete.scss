@@ -2,4 +2,9 @@
     background: url(#{$img-path}/delete.svg) no-repeat 3px center;
     text-align: left;
     padding: $popup_padding $popup_padding $popup_padding 33px;
+    transition: .2s ease-in-out opacity;
+
+    &:hover {
+        opacity: .6;
+    }
 }

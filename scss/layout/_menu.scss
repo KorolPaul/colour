@@ -5,7 +5,11 @@
         @include invisible-text;
         display: inline-block;
         margin: 0 0 0 16px;
+        transition: .2s ease-in-out opacity;
 
+        &:hover {
+            opacity: .6;
+        }
         &__tags {
             background: url(#{$img-path}/tags.svg) no-repeat center 0;
             width: 16px;
