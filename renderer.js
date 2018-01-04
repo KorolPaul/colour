@@ -1,7 +1,8 @@
 const ipc = require('electron').ipcRenderer,
       clipboard = require('electron').clipboard,
       fs = require('fs'),
-      { dialog } = require('electron').remote;
+      { dialog } = require('electron').remote,
+      appPath = require('electron').remote.app.getAppPath();
 
 const explorerTrigger = document.getElementById('explorer-trigger'),
       addPopupTrigger = document.getElementById('add-popup-trigger'),
@@ -33,6 +34,7 @@ let colorsJSON = [],
     };
 
 function init() {
+
     menuTrigger.addEventListener('click', function () {
         menuPopup.classList.toggle('popup__visible');
     });
@@ -160,7 +162,7 @@ function saveColor(colorCode) {
 }
 
 function saveJSON() {
-    fs.writeFile('colors.json', JSON.stringify(colorsJSON), (err) => {
+    fs.writeFile(`/${appPath}/colors.json`, JSON.stringify(colorsJSON), (err) => {
         if (err) {
             console.log("An error ocurred creating the file " + err.message);
         }
@@ -168,8 +170,9 @@ function saveJSON() {
 }
 
 function loadColors(file) {
-    fs.readFile('colors.json', 'utf-8', (err, data) => {
+    fs.readFile(`/${appPath}/colors.json`, 'utf-8', (err, data) => {
         if(err){
+            alert(err.message)
             console.log("An error ocurred reading the file :" + err.message);
             return;
         }
